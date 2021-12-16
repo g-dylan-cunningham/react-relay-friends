@@ -10,7 +10,14 @@ app.get('/', (req, res) => {
 });
 
 // simple resolver
-const root = { hello: "this is the response for hello query" }
+const root = { friend: () => ({
+  "id": 12341234,
+  "firstName": "Mo",
+  "lastName": "Bettah",
+  "gender": "female",
+  "language": "english",
+  "email": "asdf.asdf.com"
+}) }
 
 app.use('/graphql', graphqlHTTP({
   schema,
@@ -18,4 +25,17 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-app.listen(port, () => console.log(`graph server listening on localhost:${port}/graphql`))
+app.listen(port, () => console.log(`graph server listening on localhost:${port}/graphql`));
+
+// // working requests:
+
+// {
+//   friend {
+//     id
+//     firstName
+//     lastName
+//     gender
+//     language
+//     email
+//   }
+// }
